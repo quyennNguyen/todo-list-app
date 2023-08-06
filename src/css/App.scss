@@ -1,0 +1,128 @@
+$light: #e8e8e8;
+$mid-color: #a0a1a4;
+$dark: #000000;
+
+main {
+    min-height: 95vh;
+    display: flex;
+}
+
+nav {
+    padding: 30px;
+    width: 200px;
+    background: $light;
+
+    ul {
+        list-style-type: none;
+
+        li {
+            margin: 10px;
+        }
+    }
+
+    #addTask-btn {
+        border: none;
+        font-size: 1rem;
+        color: $dark;
+        background: transparent;
+        cursor: pointer;
+
+        &:hover {
+            font-weight: 800;
+            transform: translateX(10px);
+        }
+    }
+}
+
+#display {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    background: rgba($light, 0.7);
+
+    #new-task-container {
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: solid;
+        padding: 30px;
+        width: 250px;
+        height: 150px;
+        background: #ffffff;
+
+        #close-btn {
+            display: block;
+            margin: 0 0 0 auto;
+            border: none;
+            width: fit-content;
+            color: $dark;
+            background: transparent;
+
+            &:hover {
+                font-weight: 800;
+            }
+        }
+
+        form {
+            display: flex;
+            flex-flow: column;
+            justify-content: center;
+
+            label {
+                font-weight: 800;
+            }
+
+            input {
+                margin: 10px 0;
+                padding: 10px;
+            }
+
+            #add-btn {
+                margin: 10px auto;
+                border: none;
+                border-radius: 20px;
+                padding: 5px 10px;
+                width: fit-content;
+                color: $dark;
+                background: $light;
+
+                &:hover {
+                    color: $light;
+                    background: $dark;
+                }
+            }
+        }
+    }
+}
+
+section {
+    ul {
+        margin: 30px 50px;
+        list-style-type: none;
+
+        li {
+            margin: 20px;
+            border-radius: 40px;
+            border: solid;
+            padding: 20px 30px;
+            width: 300px;
+            display: flex;
+            justify-content: space-between;
+            text-transform: capitalize;
+
+            button {
+                border: none;
+                border-radius: 20px;
+                padding: 5px 10px;
+                color: $dark;
+                background: $light;
+
+                &:hover {
+                    color: $light;
+                    background: $dark;
+                }
+            }
+        }
+    }
+}
