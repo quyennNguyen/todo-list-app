@@ -1,1 +1,1 @@
-Link to page: https://quyennnguyen.github.io/todolist-app.github.io/
+Link to page: https://quyennnguyen.github.io/todolist-app
