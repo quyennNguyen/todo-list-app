@@ -1,71 +1,83 @@
 import { useState } from "react";
+import MenuNav from "./MenuNav";
+import TaskBox from "./TaskBox";
+import TaskList from "./TaskList";
+import TrashList from "./TrashList";
 
 function Main() {
-  const [open, setOpen] = useState(false);
+  const [openTaskBox, setOpenTaskBox] = useState(false);
+  const [viewTaskList, setViewTaskList] = useState(true);
   const [task, setTask] = useState("");
   const [taskList, setTaskList] = useState([]);
+  const [trashList, setTrashList] = useState([]);
 
   const handleSubmit = (event) => {
-    if (task !== "") {
-      setTaskList((prev) => [...prev, task]);
-      setTask("");
-    }
     event.preventDefault();
-    setOpen(false);
+    if (task !== "") {
+      addTask(task);
+    }
+    setTask("");
+    setOpenTaskBox(false);
+    setViewTaskList(true);
+  };
+
+  const addTask = (target) => {
+    if (taskList.some((task) => task.toLowerCase() === target.toLowerCase())) {
+      alert("Your task already exists in list.");
+    } else {
+      setTaskList((prev) => [...prev, target]);
+    }
+  };
+
+  const handleRemoveTask = (event) => {
+    const target = event.target.parentNode.querySelector("p").innerText;
+    setTaskList((prev) => prev.filter((task) => task !== target));
+    addTrash(target);
+  };
+
+  const addTrash = (target) => {
+    if (trashList.every((item) => item.toLowerCase() !== target.toLowerCase())) {
+      setTrashList((prev) => [...prev, target]);
+    }
+  };
+
+  const handleRemoveTrash = (event) => {
+    const target = event.target.parentNode.querySelector("p").innerText;
+    setTrashList((prev) => prev.filter((item) => item !== target));
+  };
+
+  const handleRestoreTask = (event) => {
+    const target = event.target.parentNode.querySelector("p").innerText;
+    addTask(target);
+    setTrashList((prev) => prev.filter((item) => item !== target));
   };
 
   return (
     <main>
-      <nav>
-        <ul>
-          <li>Search</li>
-          <li>
-            <button id="addTask-btn" onClick={() => setOpen((prev) => !prev)}>
-              Create new task
-            </button>
-          </li>
-          <li>Import</li>
-          <li>Trash</li>
-        </ul>
-      </nav>
+      <MenuNav
+        open={() => setOpenTaskBox((prev) => !prev)}
+        viewTask={() => setViewTaskList(true)}
+        viewTrash={() => setViewTaskList(false)}
+      />
 
-      {open && (
-        <div id="display">
-          <div id="new-task-container">
-            <button
-              id="close-btn"
-              onClick={() => {
-                setOpen(false);
-                setTask("");
-              }}
-            >
-              x close
-            </button>
-            <form onSubmit={(event) => handleSubmit(event)}>
-              <label>New Task</label>
-              <input
-                type="text"
-                value={task}
-                placeholder="what to do?..."
-                onChange={(event) => setTask(event.target.value)}
-              />
-              <button id="add-btn" type="submit">
-                Add
-              </button>
-            </form>
-          </div>
-        </div>
+      {openTaskBox && (
+        <TaskBox
+          close={() => {
+            setOpenTaskBox(false);
+            setTask("");
+          }}
+          submit={handleSubmit}
+          input={task}
+          change={(event) => setTask(event.target.value)}
+        />
       )}
 
       <section>
-        <ul>
-          {taskList.map((task) => (
-            <li>
-              {task.toLowerCase()}
-              <button onClick={(event) => event.target.parentNode.remove()}>Remove</button>
-            </li>
-          ))}
-        </ul>
+        {viewTaskList ? (
+          <TaskList list={taskList} remove={handleRemoveTask} />
+        ) : (
+          <TrashList list={trashList} remove={handleRemoveTrash} restore={handleRestoreTask} />
+        )}
       </section>
     </main>
   );

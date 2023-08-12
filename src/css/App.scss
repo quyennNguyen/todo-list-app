@@ -3,24 +3,25 @@ $mid-color: #a0a1a4;
 $dark: #000000;
 
 main {
+    min-width: 800px;
     min-height: 95vh;
     display: flex;
 }
 
 nav {
     padding: 30px;
-    width: 200px;
     background: $light;
 
     ul {
         list-style-type: none;
 
         li {
-            margin: 10px;
+            margin: 10px 20px;
+            white-space: nowrap;
         }
     }
 
-    #addTask-btn {
+    .nav-btn {
         border: none;
         font-size: 1rem;
         color: $dark;
@@ -34,10 +35,11 @@ nav {
     }
 }
 
-#display {
+#task-box {
     width: 100vw;
     height: 100vh;
     position: fixed;
+    z-index: 1;
     background: rgba($light, 0.7);
 
     #new-task-container {
@@ -74,12 +76,12 @@ nav {
             }
 
             input {
-                margin: 10px 0;
+                margin: 20px 0;
                 padding: 10px;
             }
 
             #add-btn {
-                margin: 10px auto;
+                margin: 0 auto;
                 border: none;
                 border-radius: 20px;
                 padding: 5px 10px;
@@ -97,8 +99,11 @@ nav {
 }
 
 section {
+    padding: 30px;
+    width: 100%;
+    position: relative;
+
     ul {
-        margin: 30px 50px;
         list-style-type: none;
 
         li {
@@ -107,11 +112,10 @@ section {
             border: solid;
             padding: 20px 30px;
             width: 300px;
-            display: flex;
-            justify-content: space-between;
-            text-transform: capitalize;
 
             button {
+                display: block;
+                margin: 0 0 0 auto;
                 border: none;
                 border-radius: 20px;
                 padding: 5px 10px;
@@ -123,6 +127,39 @@ section {
                     background: $dark;
                 }
             }
+
+            #restore-btn {
+                margin: 10px auto 0 auto;
+            }
+
+            hr {
+                margin: 20px 0;
+            }
+
+            form {
+                display: flex;
+                justify-content: space-evenly;
+
+                label {
+                    color: $mid-color;
+
+                    input {
+                        margin-right: 5px;
+
+                        &:checked + span {
+                            color: $dark;
+                        }
+                    }
+                }
+            }
         }
+    }
+
+    #stats {
+        display: flex;
+        justify-content: space-evenly;
+        width: 100%;
+        position: absolute;
+        bottom: 0;
     }
 }

@@ -1,38 +1,40 @@
 main {
+  min-width: 800px;
   min-height: 95vh;
   display: flex;
 }
 
 nav {
   padding: 30px;
-  width: 200px;
   background: #e8e8e8;
 }
 nav ul {
   list-style-type: none;
 }
 nav ul li {
-  margin: 10px;
+  margin: 10px 20px;
+  white-space: nowrap;
 }
-nav #addTask-btn {
+nav .nav-btn {
   border: none;
   font-size: 1rem;
   color: #000000;
   background: transparent;
   cursor: pointer;
 }
-nav #addTask-btn:hover {
+nav .nav-btn:hover {
   font-weight: 800;
   transform: translateX(10px);
 }
 
-#display {
+#task-box {
   width: 100vw;
   height: 100vh;
   position: fixed;
+  z-index: 1;
   background: rgba(232, 232, 232, 0.7);
 }
-#display #new-task-container {
+#task-box #new-task-container {
   position: relative;
   top: 50%;
   left: 50%;
@@ -43,7 +45,7 @@ nav #addTask-btn:hover {
   height: 150px;
   background: #ffffff;
 }
-#display #new-task-container #close-btn {
+#task-box #new-task-container #close-btn {
   display: block;
   margin: 0 0 0 auto;
   border: none;
@@ -52,23 +54,23 @@ nav #addTask-btn:hover {
   color: #000000;
   background: transparent;
 }
-#display #new-task-container #close-btn:hover {
+#task-box #new-task-container #close-btn:hover {
   font-weight: 800;
 }
-#display #new-task-container form {
+#task-box #new-task-container form {
   display: flex;
   flex-flow: column;
   justify-content: center;
 }
-#display #new-task-container form label {
+#task-box #new-task-container form label {
   font-weight: 800;
 }
-#display #new-task-container form input {
-  margin: 10px 0;
+#task-box #new-task-container form input {
+  margin: 20px 0;
   padding: 10px;
 }
-#display #new-task-container form #add-btn {
-  margin: 10px auto;
+#task-box #new-task-container form #add-btn {
+  margin: 0 auto;
   border: none;
   border-radius: 20px;
   padding: 5px 10px;
@@ -77,13 +79,17 @@ nav #addTask-btn:hover {
   color: #000000;
   background: #e8e8e8;
 }
-#display #new-task-container form #add-btn:hover {
+#task-box #new-task-container form #add-btn:hover {
   color: #e8e8e8;
   background: #000000;
 }
 
+section {
+  padding: 30px;
+  width: 100%;
+  position: relative;
+}
 section ul {
-  margin: 30px 50px;
   list-style-type: none;
 }
 section ul li {
@@ -92,11 +98,10 @@ section ul li {
   border: solid;
   padding: 20px 30px;
   width: 300px;
-  display: flex;
-  justify-content: space-between;
-  text-transform: capitalize;
 }
 section ul li button {
+  display: block;
+  margin: 0 0 0 auto;
   border: none;
   border-radius: 20px;
   padding: 5px 10px;
@@ -106,4 +111,30 @@ section ul li button {
 section ul li button:hover {
   color: #e8e8e8;
   background: #000000;
+}
+section ul li #restore-btn {
+  margin: 10px auto 0 auto;
+}
+section ul li hr {
+  margin: 20px 0;
+}
+section ul li form {
+  display: flex;
+  justify-content: space-evenly;
+}
+section ul li form label {
+  color: #a0a1a4;
+}
+section ul li form label input {
+  margin-right: 5px;
+}
+section ul li form label input:checked + span {
+  color: #000000;
+}
+section #stats {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
 }/*# sourceMappingURL=App.css.map */
