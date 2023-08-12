@@ -6,7 +6,7 @@ function Main() {
   const [taskList, setTaskList] = useState([]);
 
   const handleSubmit = (event) => {
-    if (task != "") {
+    if (task !== "") {
       setTaskList((prev) => [...prev, task]);
       setTask("");
     }
