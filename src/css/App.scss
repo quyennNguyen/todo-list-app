@@ -2,35 +2,57 @@ $light: #e8e8e8;
 $mid-color: #a0a1a4;
 $dark: #000000;
 
-main {
-    min-width: 800px;
-    min-height: 95vh;
-    display: flex;
+#root {
+    display: grid;
+    grid-template-columns: fit-content(200px) auto;
+    grid-template-rows: auto auto;
 }
 
-nav {
-    padding: 30px;
+header {
+    grid-area: 1 / 1 / span 1 / span 1;
+    padding: 50px 0;
     background: $light;
 
-    ul {
-        list-style-type: none;
-
-        li {
-            margin: 10px 20px;
-            white-space: nowrap;
-        }
-    }
-
-    .nav-btn {
-        border: none;
+    #arrow {
+        position: fixed;
+        top: 5px;
+        left: 5px;
+        z-index: 1;
+        border-radius: 5px;
+        padding: 5px;
         font-size: 1rem;
         color: $dark;
         background: transparent;
         cursor: pointer;
 
         &:hover {
-            font-weight: 800;
-            transform: translateX(10px);
+            color: $light;
+            background: $dark;
+        }
+
+    }
+
+    nav {
+        ul {
+            list-style-type: none;
+
+            li {
+                margin: 20px;
+                white-space: nowrap;
+            }
+        }
+
+        .nav-btn {
+            border: none;
+            font-size: 1rem;
+            color: $dark;
+            background: transparent;
+            cursor: pointer;
+
+            &:hover {
+                font-weight: 800;
+                transform: translateX(10px);
+            }
         }
     }
 }
@@ -49,13 +71,13 @@ nav {
         transform: translate(-50%, -50%);
         border: solid;
         padding: 30px;
-        width: 250px;
+        width: 500px;
         height: 150px;
         background: #ffffff;
 
         #close-btn {
             display: block;
-            margin: 0 0 0 auto;
+            margin-left: auto;
             border: none;
             width: fit-content;
             color: $dark;
@@ -98,12 +120,15 @@ nav {
     }
 }
 
-section {
-    padding: 30px;
-    width: 100%;
+main {
+    grid-area: 1 / 2 / span 1 / span 1;
+    padding: 50px;
+    min-height: 85vh;
     position: relative;
 
     ul {
+        display: flex;
+        flex-flow: wrap;
         list-style-type: none;
 
         li {
@@ -111,11 +136,11 @@ section {
             border-radius: 40px;
             border: solid;
             padding: 20px 30px;
-            width: 300px;
+            flex: 0 0 300px;
 
             button {
                 display: block;
-                margin: 0 0 0 auto;
+                margin-left: auto;
                 border: none;
                 border-radius: 20px;
                 padding: 5px 10px;
@@ -146,7 +171,7 @@ section {
                     input {
                         margin-right: 5px;
 
-                        &:checked + span {
+                        &:checked+span {
                             color: $dark;
                         }
                     }
@@ -162,4 +187,10 @@ section {
         position: absolute;
         bottom: 0;
     }
+}
+
+footer {
+    grid-area: 2 / 1 / span 1 / span 2;
+    margin: 20px;
+    text-align: center;
 }

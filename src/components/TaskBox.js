@@ -1,8 +1,8 @@
-function TaskBox({close, submit, input, change}) {
+function TaskBox({closeTaskBox, submit, input, change}) {
   return (
     <div id="task-box">
       <div id="new-task-container">
-        <button id="close-btn" onClick={close}>
+        <button id="close-btn" onClick={closeTaskBox}>
           x close
         </button>
         <form onSubmit={submit}>

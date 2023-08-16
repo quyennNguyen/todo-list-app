@@ -7,8 +7,5 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <App />
-    <footer>
-      <p>&lt;&lt;&lt; &copy; 2022 Quyen Nguyen &gt;&gt;&gt;</p>
-    </footer>
   </React.StrictMode>
 );
